@@ -1,20 +1,20 @@
 """
-Irritability Scoring (v2) – uses survey_preprocessing module.
-Features: critical, anxious, not_calm, not_reserved (all Behavior).
+Irritability Scoring (v3) – uses survey_preprocessing module.
+Features: critical, not_calm, not_reserved (psychiatrist-reviewed).
 """
 import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
 
 from survey_preprocessing import (
-    STUDENT_IDS, load_critical, load_anxiety, load_not_calm,
+    STUDENT_IDS, load_critical, load_not_calm,
     load_not_reserved, build_daily_features,
 )
 
 BASE_OUT = __import__("pathlib").Path(r"c:\Users\bzion\OneDrive - mail.tau.ac.il\CE\sem5\design_thinking")
 
-FEATURE_COLS = ["critical_val", "anxious_val", "not_calm_val", "not_reserved_val"]
-LOADERS = [load_critical, load_anxiety, load_not_calm, load_not_reserved]
+FEATURE_COLS = ["critical_val", "not_calm_val", "not_reserved_val"]
+LOADERS = [load_critical, load_not_calm, load_not_reserved]
 
 
 def run_pca_scoring():
@@ -41,7 +41,7 @@ def run_pca_scoring():
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("IRRITABILITY  v2  (4 Behavior features)")
+    print("IRRITABILITY  v3  (3 Behavior features, psychiatrist-reviewed)")
     print("=" * 60)
 
     full, weights, ev, sids = run_pca_scoring()

@@ -1,0 +1,125 @@
+Sensor-to-Feature Mapping
+=========================
+Which passive sensors from the dataset can serve as predictors (X-features)
+for each EMA-derived psychological construct.
+
+Available sensors in the dataset:
+  - conversation   : detected conversation episodes (start/end timestamps)
+  - dark           : screen-off / dark periods (start/end)
+  - gps            : location (latitude, longitude, speed, bearing, accuracy)
+  - phonecharge    : charging periods (start/end)
+  - phonelock      : phone lock/unlock periods (start/end)
+  - wifi           : nearby wifi networks (BSSID, frequency, signal level)
+  - wifi_location  : semantic location labels (e.g. "east-wheelock", "baker-berry")
+  - call_log       : phone calls (type, number hash, duration, timestamp)
+  - sms            : text messages (type, address hash, timestamp)
+
+
+================================================================================
+1. RESTLESSNESS  (stress, anxiety, not_calm)
+================================================================================
+
+  stress → "Right now, I am... [stressed out / feeling good]"
+  Relevant sensors:
+    - phonelock        : frequent phone checking (short lock/unlock cycles) = agitation
+    - dark             : irregular screen-off patterns, late-night phone use
+    - gps              : high mobility / erratic movement patterns
+    - conversation     : fewer or shorter conversations under stress
+    - call_log         : changes in call frequency/duration under stress
+
+  anxiety → "I was anxious, easily upset"
+  Relevant sensors:
+    - phonelock        : compulsive phone checking (frequent short unlocks)
+    - gps              : limited location variety (avoidance) or erratic movement
+    - conversation     : reduced social interaction (fewer/shorter conversations)
+    - call_log         : fewer outgoing calls, more missed calls
+    - sms              : changes in texting patterns (frequency, time of day)
+
+  not_calm → "I was calm, emotionally stable" (inverted)
+  Relevant sensors:
+    - phonelock        : frequent phone unlocks = lack of calm
+    - dark             : disturbed screen-off patterns, less sustained rest
+    - gps              : high variability in location / speed
+
+
+================================================================================
+2. IMPULSIVITY  (not_dependable, critical)
+================================================================================
+
+  not_dependable → "I was dependable, self-disciplined" (inverted)
+  Relevant sensors:
+    - phonelock        : excessive phone use (long unlock sessions = distraction)
+    - dark             : late-night phone use (poor self-discipline)
+    - wifi_location    : skipping expected locations (e.g. missing class)
+    - gps              : irregular schedule patterns
+
+  critical → "I was critical, quarrelsome"
+  Relevant sensors:
+    - call_log         : more calls / longer calls (arguments)
+    - sms              : increased messaging frequency (confrontations)
+    - conversation     : longer conversation episodes (heated discussions)
+
+
+================================================================================
+3. IRRITABILITY  (critical, not_calm, not_reserved)
+================================================================================
+
+  critical → "I was critical, quarrelsome"
+  Relevant sensors:
+    - call_log         : increased call frequency, longer call durations
+    - sms              : burst texting patterns
+    - conversation     : longer / more frequent face-to-face conversations
+
+  not_calm → "I was calm, emotionally stable" (inverted)
+  Relevant sensors:
+    - phonelock        : frequent phone checking
+    - gps              : erratic location changes
+
+  not_reserved → "I was reserved, quiet" (inverted)
+  Relevant sensors:
+    - conversation     : more frequent / longer conversations
+    - call_log         : more outgoing calls
+    - sms              : more outgoing messages
+    - bluetooth        : more nearby devices (socializing in groups)
+    - wifi_location    : more time in social locations (dining halls, common areas)
+
+
+================================================================================
+4. INSOMNIA  (poor_sleep_quality, few_hours, daytime_sleepiness)
+================================================================================
+
+  poor_sleep_quality → "How would you rate your overall sleep last night?"
+  Relevant sensors:
+    - dark             : fragmented dark periods at night (waking up)
+    - phonelock        : phone unlocks during nighttime hours
+    - phonecharge      : irregular charging patterns at night
+
+  few_hours → "How many hours did you sleep last night?"
+  Relevant sensors:
+    - dark             : total dark duration during night (proxy for sleep duration)
+    - phonelock        : last unlock → first unlock = sleep window
+    - phonecharge      : overnight charging duration as sleep proxy
+
+  daytime_sleepiness → "Trouble staying awake during the day?"
+  Relevant sensors:
+    - phonelock        : long lock periods during daytime (phone untouched = napping)
+    - dark             : daytime dark episodes (napping with phone face-down)
+    - wifi_location    : staying in dorm during class hours
+
+
+================================================================================
+SUMMARY TABLE
+================================================================================
+
+Sensor            | Restless | Impulsive | Irritable | Insomnia
+------------------|----------|-----------|-----------|----------
+conversation      |    X     |     X     |     X     |
+dark              |    X     |     X     |           |    X
+gps               |    X     |     X     |     X     |
+phonecharge       |          |           |           |    X
+phonelock         |    X     |     X     |     X     |    X
+wifi              |          |           |           |
+wifi_location     |          |     X     |     X     |    X
+bluetooth         |          |           |     X     |
+call_log          |    X     |     X     |     X     |
+sms               |    X     |     X     |     X     |

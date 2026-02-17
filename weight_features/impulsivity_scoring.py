@@ -1,20 +1,20 @@
 """
-Impulsivity Scoring (v2) – uses survey_preprocessing module.
-Features: not_dependable, disorganized, critical, not_calm (all Behavior).
+Impulsivity Scoring (v3) – uses survey_preprocessing module.
+Features: not_dependable, critical (psychiatrist-reviewed).
 """
 import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
 
 from survey_preprocessing import (
-    STUDENT_IDS, load_not_dependable, load_disorganized,
-    load_critical, load_not_calm, build_daily_features,
+    STUDENT_IDS, load_not_dependable,
+    load_critical, build_daily_features,
 )
 
 BASE_OUT = __import__("pathlib").Path(r"c:\Users\bzion\OneDrive - mail.tau.ac.il\CE\sem5\design_thinking")
 
-FEATURE_COLS = ["not_dependable_val", "disorganized_val", "critical_val", "not_calm_val"]
-LOADERS = [load_not_dependable, load_disorganized, load_critical, load_not_calm]
+FEATURE_COLS = ["not_dependable_val", "critical_val"]
+LOADERS = [load_not_dependable, load_critical]
 
 
 def run_pca_scoring():
@@ -41,7 +41,7 @@ def run_pca_scoring():
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("IMPULSIVITY  v2  (4 Behavior features)")
+    print("IMPULSIVITY  v3  (2 Behavior features, psychiatrist-reviewed)")
     print("=" * 60)
 
     full, weights, ev, sids = run_pca_scoring()

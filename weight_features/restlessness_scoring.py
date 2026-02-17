@@ -1,6 +1,6 @@
 """
-Restlessness Scoring (v4) – uses survey_preprocessing module.
-Features: stress, anxiety, not_calm, disorganized.
+Restlessness Scoring (v5) – uses survey_preprocessing module.
+Features: stress, anxiety, not_calm (psychiatrist-reviewed).
 """
 import numpy as np
 import pandas as pd
@@ -8,13 +8,13 @@ from sklearn.decomposition import PCA
 
 from survey_preprocessing import (
     STUDENT_IDS, load_stress, load_anxiety, load_not_calm,
-    load_disorganized, build_daily_features,
+    build_daily_features,
 )
 
 BASE_OUT = __import__("pathlib").Path(r"c:\Users\bzion\OneDrive - mail.tau.ac.il\CE\sem5\design_thinking")
 
-FEATURE_COLS = ["stress_val", "anxiety_val", "not_calm_val", "disorganized_val"]
-LOADERS = [load_stress, load_anxiety, load_not_calm, load_disorganized]
+FEATURE_COLS = ["stress_val", "anxiety_val", "not_calm_val"]
+LOADERS = [load_stress, load_anxiety, load_not_calm]
 
 
 def run_pca_scoring():
@@ -41,7 +41,7 @@ def run_pca_scoring():
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("RESTLESSNESS  v4  (4 features, semantic stress mapping)")
+    print("RESTLESSNESS  v5  (3 features, psychiatrist-reviewed)")
     print("=" * 60)
 
     full, weights, ev, sids = run_pca_scoring()

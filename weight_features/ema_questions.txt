@@ -1,0 +1,57 @@
+Psychological State Survey Structure (Psychiatrist-Reviewed)
+=============================================================
+
+1. RESTLESSNESS (3 features)
+-----------------------------
+  stress:
+  Question: "Right now, I am..."
+  Options: [1] A little stressed, [2] Definitely stressed, [3] Stressed out, [4] Feeling good, [5] Feeling great
+
+  anxiety:
+  Question: "In the past 15 minutes, I was anxious, easily upset."
+  Options: (Not at all) 1 2 3 4 5 (Extremely)
+
+  not_calm:
+  Question: "In the past 15 minutes, I was calm, emotionally stable."
+  Options: (Not at all) 1 2 3 4 5 (Extremely)
+
+
+2. IMPULSIVITY (2 features)
+----------------------------
+  not_dependable:
+  Question: "In the past 15 minutes, I was dependable, self-disciplined."
+  Options: (Not at all) 1 2 3 4 5 (Extremely)
+
+  critical:
+  Question: "In the past 15 minutes, I was critical, quarrelsome."
+  Options: (Not at all) 1 2 3 4 5 (Extremely)
+
+
+3. IRRITABILITY (3 features)
+-----------------------------
+  critical:
+  Question: "In the past 15 minutes, I was critical, quarrelsome."
+  Options: (Not at all) 1 2 3 4 5 (Extremely)
+
+  not_calm:
+  Question: "In the past 15 minutes, I was calm, emotionally stable."
+  Options: (Not at all) 1 2 3 4 5 (Extremely)
+
+  not_reserved:
+  Question: "In the past 15 minutes, I was reserved, quiet."
+  Options: (Not at all) 1 2 3 4 5 (Extremely)
+
+
+4. INSOMNIA (3 features)
+-------------------------
+  poor_sleep_quality:
+  Question: "How would you rate your overall sleep last night?"
+  Options: [1] Very good, [2] Fairly good, [3] Fairly bad, [4] Very bad
+
+  few_hours:
+  Question: "How many hours did you sleep last night?"
+  Options: [1] <3h, [2] 3.5h, ... [19] 12h
+
+  daytime_sleepiness:
+  Question: "How often did you have trouble staying awake yesterday while in class, eating meals or engaging in social activity?"
+  Options: [1] None, [2] Once, [3] Twice, [4] Three or more times
